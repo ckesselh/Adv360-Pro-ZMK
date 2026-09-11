@@ -27,9 +27,9 @@
         default_layer {
             display-name = "Base";
             bindings = <
-&kp EQUAL  &kp N1      &kp N2       &kp N3        &kp N4      &kp N5  &none                                                        &none      &kp N6  &kp N7      &kp N8        &kp N9       &kp N0         &kp MINUS
+&kp EQUAL  &kp N1      &kp N2       &kp N3        &kp N4      &kp N5  &none                                                        &mo 3      &kp N6  &kp N7      &kp N8        &kp N9       &kp N0         &kp MINUS
 &kp TAB    &kp Q       &kp W        &kp E         &kp R       &kp T   &none                                                        &none      &kp Y   &kp U       &kp I         &kp O        &kp P          &kp BSLH
-&kp ESC    &hm LALT A  &hm LCTRL S  &hm LSHIFT D  &hm LGUI F  &kp G   &none          &kp LCTRL  &kp LALT      &kp LGUI  &kp K_APP  &none      &kp H   &hm RGUI J  &hm RSHIFT K  &hm RCTRL L  &hm RALT SEMI  &kp SQT
+&kp ESC    &hm LALT A  &hm LCTRL S  &hm LSHIFT D  &hm LGUI F  &kp G   &mo 5           &kp LCTRL  &kp LALT      &kp LGUI  &kp K_APP  &mo 6      &kp H   &hm RGUI J  &hm RSHIFT K  &hm RCTRL L  &hm RALT SEMI  &kp SQT
 &kp LSHFT  &kp Z       &kp X        &kp C         &kp V       &kp B                             &none         &none                           &kp N   &kp M       &kp COMMA     &kp DOT      &kp FSLH       &kp RSHFT
 &none      &none       &kp GRAVE    &kp LEFT      &kp RIGHT           &kp BACKSPACE  &kp DEL    &none         &none     &kp ENTER  &kp SPACE          &kp UP      &kp DOWN      &kp LBKT     &kp RBKT       &none
             >;
@@ -69,18 +69,40 @@
         };
 
         extra1 {
-            display-name = "Red";
-            status = "reserved";
+            // Legacy builds skip reserved nodes; keep this unused slot allocated.
+            display-name = "Unused";
+            bindings = <
+&none  &none  &none  &none  &none  &none  &none                                                   &none      &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none  &none                                                   &none      &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none  &none   &none  &none      &none  &none  &none   &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none  &none                  &none      &none                  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none          &none  &none  &none      &none  &none  &none          &none  &none  &none  &none  &none
+            >;
         };
 
-        extra2 {
-            display-name = "Purple";
-            status = "reserved";
+        // Separate layers keep Sys active until both activation keys are released.
+        // Use the purple/cyan slots (5/6); keep the red slot (4) unused.
+        // Keep both Sys binding lists identical, including the transparent activation keys.
+        sys {
+            display-name = "Sys L";
+            bindings = <
+&none  &none  &none  &none  &none  &none  &none                                                   &none      &none  &none      &none      &none  &none  &none
+&none  &none  &none  &none  &none  &none  &none                                                   &none      &kp C_PREV  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none  &none
+&none  &none  &none  &none  &none  &none  &trans   &none  &none      &none  &none  &trans   &kp C_VOL_DN  &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &none  &none
+&none  &none  &none  &none  &none  &none                  &none      &none                  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none          &none  &none  &none      &none  &none  &none          &none  &none  &none  &none  &none
+            >;
         };
 
-        extra3 {
-            display-name = "Cyan";
-            status = "reserved";
+        sys_right {
+            display-name = "Sys R";
+            bindings = <
+&none  &none  &none  &none  &none  &none  &none                                                   &none      &none  &none      &none      &none  &none  &none
+&none  &none  &none  &none  &none  &none  &none                                                   &none      &kp C_PREV  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none  &none
+&none  &none  &none  &none  &none  &none  &trans   &none  &none      &none  &none  &trans   &kp C_VOL_DN  &kp C_VOL_DN  &kp C_MUTE  &kp C_VOL_UP  &none  &none
+&none  &none  &none  &none  &none  &none                  &none      &none                  &none  &none  &none  &none  &none  &none
+&none  &none  &none  &none  &none          &none  &none  &none      &none  &none  &none          &none  &none  &none  &none  &none
+            >;
         };
 
         extra4 {
